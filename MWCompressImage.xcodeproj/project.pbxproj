@@ -13,6 +13,8 @@
 		48B7166A283B58950099D4D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B71668283B58950099D4D4 /* Main.storyboard */; };
 		48B71672283CAADE0099D4D4 /* TinyPNGUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B71671283CAADE0099D4D4 /* TinyPNGUploadService.swift */; };
 		48B71674283CAB720099D4D4 /* UploadResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B71673283CAB720099D4D4 /* UploadResponseItem.swift */; };
+		48B71677283CD20E0099D4D4 /* TinyPNGDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B71676283CD20E0099D4D4 /* TinyPNGDownloadService.swift */; };
+		48B71679283CD4B50099D4D4 /* String_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B71678283CD4B50099D4D4 /* String_Extensions.swift */; };
 		AB6120E39886257F365277F5 /* Pods_MWCompressImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EEC2FA6439ECA9157375EB7 /* Pods_MWCompressImage.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,8 @@
 		48B71671283CAADE0099D4D4 /* TinyPNGUploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyPNGUploadService.swift; sourceTree = "<group>"; };
 		48B71673283CAB720099D4D4 /* UploadResponseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResponseItem.swift; sourceTree = "<group>"; };
 		48B71675283CADCC0099D4D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		48B71676283CD20E0099D4D4 /* TinyPNGDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyPNGDownloadService.swift; sourceTree = "<group>"; };
+		48B71678283CD4B50099D4D4 /* String_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Extensions.swift; sourceTree = "<group>"; };
 		51A5EE92EEB00850BC1DF42B /* Pods-MWCompressImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWCompressImage.debug.xcconfig"; path = "Target Support Files/Pods-MWCompressImage/Pods-MWCompressImage.debug.xcconfig"; sourceTree = "<group>"; };
 		6EEC2FA6439ECA9157375EB7 /* Pods_MWCompressImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWCompressImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA63D1B8FE66A79286A18F95 /* Pods-MWCompressImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWCompressImage.release.xcconfig"; path = "Target Support Files/Pods-MWCompressImage/Pods-MWCompressImage.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,7 +70,9 @@
 			children = (
 				48B71675283CADCC0099D4D4 /* Info.plist */,
 				48B71671283CAADE0099D4D4 /* TinyPNGUploadService.swift */,
+				48B71676283CD20E0099D4D4 /* TinyPNGDownloadService.swift */,
 				48B71673283CAB720099D4D4 /* UploadResponseItem.swift */,
+				48B71678283CD4B50099D4D4 /* String_Extensions.swift */,
 				48B71662283B58920099D4D4 /* AppDelegate.swift */,
 				48B71664283B58920099D4D4 /* ViewController.swift */,
 				48B71666283B58950099D4D4 /* Assets.xcassets */,
@@ -210,6 +216,8 @@
 				48B71665283B58920099D4D4 /* ViewController.swift in Sources */,
 				48B71663283B58920099D4D4 /* AppDelegate.swift in Sources */,
 				48B71674283CAB720099D4D4 /* UploadResponseItem.swift in Sources */,
+				48B71677283CD20E0099D4D4 /* TinyPNGDownloadService.swift in Sources */,
+				48B71679283CD4B50099D4D4 /* String_Extensions.swift in Sources */,
 				48B71672283CAADE0099D4D4 /* TinyPNGUploadService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

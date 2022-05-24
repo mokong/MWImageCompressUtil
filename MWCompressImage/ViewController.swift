@@ -23,6 +23,8 @@ class ViewController: NSViewController {
     fileprivate var fileUrls: [URL]? // 选择的文件路径
     fileprivate var resultOutput: String = "" // 结果
     fileprivate var isSamePath: Bool = true // 默认是相同路径
+    fileprivate var destinationUrl: URL? // 下载文件目录
+    fileprivate var totalCompressSize: CLongLong = 0 // 共计压缩掉的大小
     
     let kApiKey: String = "Fd1tMB3NY9QrjCM7wnFCsrPYkwLjG8P4" // 建议自己去申请，https://tinypng.com/developers，每个月免费500张
     let kDefaultOutputStr = """
@@ -60,12 +62,16 @@ class ViewController: NSViewController {
     
     @IBAction func choosePathAction(_ sender: Any) {
         _privateIncatorAnimate(false)
+        
+        totalCompressSize = 0
         contentTextView.string = kDefaultOutputStr
+        resultOutput = ""
         
         let panel = NSOpenPanel()
         panel.allowsMultipleSelection = true // 支持多选文件
         panel.canChooseDirectories = true // 可以选择目录
         panel.canChooseFiles = true // 可以选择文件
+        panel.canCreateDirectories = true
         panel.begin { response in
             if response == .OK {
                 self.fileUrls = panel.urls
@@ -84,7 +90,7 @@ class ViewController: NSViewController {
             _privateShowAlert(with: "请选择要压缩的路径")
             return
         }
-        
+
         let apiKey = keyTF.stringValue
         guard apiKey.count > 0 else {
             _privateShowAlert(with: "请输入 TinyPNG 的 APIKey")
@@ -123,6 +129,8 @@ class ViewController: NSViewController {
         }
         
         group.notify(queue: DispatchQueue.main) {
+            self.resultOutput += String(format: "\n 总计：相比之前共压缩掉了%ldKb", self.totalCompressSize/1024)
+            self.contentTextView.string = self.resultOutput
             self._privateIncatorAnimate(false)
         }
     }
@@ -144,11 +152,61 @@ class ViewController: NSViewController {
     /// 调用 API 压缩图片
     fileprivate func _privateCompressImage(with url: URL, apiKey: String, callback: (() -> Void)?) {
         TinyPNGUploadService.uploadFile(with: url, apiKey: apiKey, responseCallback: { uploadResItem in
-            if self.resultOutput.count == 0 {
-                self.resultOutput = url.absoluteString + "压缩已完成, 压缩比: "
+            let compressSize = (uploadResItem?.input.size ?? 0) - (uploadResItem?.output.size ?? 0)
+            self.totalCompressSize += compressSize
+            
+            self._privateUpdateContentOutDisplay(with: url, isCompressCompleted: false, item: uploadResItem?.output)
+            if let tempUrlStr = uploadResItem?.output.url,
+               let tempUrl = URL(string: tempUrlStr) {
+                let destinationUrl = self._privateGetDownloadDestinationPath(from: url)
+                TinyPNGDownloadService.downloadFile(with: tempUrl,
+                                                    to: destinationUrl,
+                                                    apiKey: apiKey) {
+                    self._privateUpdateContentOutDisplay(with: url, isCompressCompleted: true, item: uploadResItem?.output)
+                    callback?()
+                }
             }
-            callback?()
+            else {
+                callback?()
+            }
         })
+    }
+    
+    /// 更新输出显示
+    fileprivate func _privateUpdateContentOutDisplay(with url: URL, isCompressCompleted: Bool, item: UploadResponseOutputItem?) {
+        var suffixStr: String = ""
+        if let outputItem = item {
+            let ratio = 1.0 - outputItem.ratio
+            suffixStr = "压缩已完成，压缩了: " + String(format: "%.0f", ratio*100) + "%的大小\n"
+            if isCompressCompleted {
+                suffixStr = String(format: "写入已完成，最终大小约为:%.ldKb \n", outputItem.size/1024)
+            }
+        }
+        else {
+            suffixStr = "压缩已完成\n"
+            if isCompressCompleted {
+                suffixStr = "写入已完成\n"
+            }
+        }
+
+        let str = url.absoluteString + suffixStr
+        self.resultOutput += str
+        self.contentTextView.string = self.resultOutput
+    }
+    
+    /// 获取下载文件保存的目录
+    fileprivate func _privateGetDownloadDestinationPath(from url: URL) -> URL {
+        if isSamePath {
+            // 直接替换原文件
+            return url
+        }
+        else {
+            // 在文件目录中新建 output 文件夹，放入 output 下
+            let fileName = url.lastPathComponent
+            let subFolderPath = String(format: "output/%@", fileName)
+            let destinationUrl = URL(fileURLWithPath: subFolderPath, relativeTo: url)
+            return destinationUrl
+        }
     }
     
     /// 判断是否是支持压缩的图片格式
