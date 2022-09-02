@@ -11,6 +11,11 @@ image compress util mac desktop
 
 如果不想要替换，取消勾选[压缩后文件同目录替换]按钮即可。
 
+Ps:
+
+如果不想要自己编译运行，可以直接下载项目中的图片压缩.dmg，下载后双击打开，如果系统提示打不开，可以把.app放入到电脑中Applications目录下，然后从目录中选择应用右键打开即可。
+
+
 ## 背景
 
 3年前有个项目[BatchProssImage](https://github.com/mokong/BatchProcessImage)，使用 Python 写的批量压缩图片的，最新再次使用时，发现忘记了怎么使用，所以就有了把这个Python 实现的工具，做成一个简单的 mac app 的想法。
