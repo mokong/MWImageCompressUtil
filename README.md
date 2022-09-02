@@ -1,4 +1,4 @@
-image compress util mac desktop
+图片批量压缩，用于项目中批量图片压缩。
 
 
 # 图片批量压缩mac应用
