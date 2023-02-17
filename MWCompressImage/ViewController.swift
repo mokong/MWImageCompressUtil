@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  MWCompressImage
 //
-//  Created by Horizon on 23/05/2022.
+//  Created by MorganWang on 23/05/2022.
 //
 
 import Cocoa

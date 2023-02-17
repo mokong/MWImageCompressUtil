@@ -2,7 +2,7 @@
 //  TinyPNGDownloadService.swift
 //  MWCompressImage
 //
-//  Created by Horizon on 24/05/2022.
+//  Created by MorganWang on 24/05/2022.
 //
 
 import Foundation
