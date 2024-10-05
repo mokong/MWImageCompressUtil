@@ -99,33 +99,42 @@ class ViewController: NSViewController {
         
         _privateIncatorAnimate(true)
         
+        var allImagePaths: [URL] = []
         let group = DispatchGroup()
-        
+
         let fileManager = FileManager.default
         for url in urls {
-            let urlStr = url.absoluteString
-            if urlStr.hasSuffix("/") {
-                // "/"结尾说明是目录
-                let dirEnumator = fileManager.enumerator(at: url, includingPropertiesForKeys: nil)
-                while let subFileUrl = dirEnumator?.nextObject() as? URL {
-                    print(subFileUrl)
-                    if _privateIsSupportImageType(subFileUrl.pathExtension) {
-                        group.enter()
-                        _privateCompressImage(with: subFileUrl, apiKey: apiKey) {
-                            
-                            group.leave()
-                        }
-                    }
-                }
-            }
-            else if _privateIsSupportImageType(url.pathExtension) {
-                print(url)
-                group.enter()
-                _privateCompressImage(with: url, apiKey: apiKey) {
-                    
-                    group.leave()
-                }
-            }
+          let urlStr = url.absoluteString
+          if urlStr.hasSuffix("/") {
+              // "/"结尾说明是目录
+              let dirEnumator = fileManager.enumerator(at: url, includingPropertiesForKeys: nil)
+              while let subFileUrl = dirEnumator?.nextObject() as? URL {
+                  print(subFileUrl)
+                  if _privateIsSupportImageType(subFileUrl.pathExtension) {
+                      allImagePaths.append(subFileUrl)
+                  }
+              }
+          }
+          else if _privateIsSupportImageType(url.pathExtension) {
+              print(url)
+              allImagePaths.append(url)
+          }
+        }
+
+        // 排序，大图在后面
+        let sortedURLs = allImagePaths.sorted {
+          let attributes1 = try? FileManager.default.attributesOfItem(atPath: $0.path)
+          let attributes2 = try? FileManager.default.attributesOfItem(atPath: $1.path)
+          let size1 = attributes1?[.size] as? Int64 ?? 0
+          let size2 = attributes2?[.size] as? Int64 ?? 0
+          return size1 < size2
+        }
+
+        for imageUrl in sortedURLs {
+          group.enter()
+          _privateCompressImage(with: imageUrl, apiKey: apiKey) {
+              group.leave()
+          }
         }
         
         group.notify(queue: DispatchQueue.main) {
