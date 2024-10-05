@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -710,36 +710,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="375"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EsC-OS-Hsl">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EsC-OS-Hsl">
                                 <rect key="frame" x="18" y="339" width="97" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="要压缩文件路径" id="9xA-Ij-hNl">
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6ln-c6-sZ5">
                                 <rect key="frame" x="366" y="328" width="101" height="32"/>
+                                <buttonCell key="cell" type="push" title="选择路径" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vd3-Mo-3CH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="bbN-Y9-Ffc"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="选择路径" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vd3-Mo-3CH">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                </buttonCell>
                                 <connections>
                                     <action selector="choosePathAction:" target="XfG-lQ-9wD" id="xhK-7c-HYg"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rz7-JW-mVz">
                                 <rect key="frame" x="366" y="250" width="101" height="32"/>
+                                <buttonCell key="cell" type="push" title="开始压缩" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="e5B-4l-DnY">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="PUa-JQ-ctQ"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="开始压缩" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="e5B-4l-DnY">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                </buttonCell>
                                 <connections>
                                     <action selector="compressAction:" target="XfG-lQ-9wD" id="5O4-wi-Bqa"/>
                                 </connections>
@@ -751,24 +751,24 @@
                                 <rect key="frame" x="18" y="258" width="186" height="18"/>
                                 <buttonCell key="cell" type="check" title="压缩后文件路径同目录替换" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="F10-Za-Jtd">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="checkBtnAction:" target="XfG-lQ-9wD" id="fS2-S1-zr9"/>
                                 </connections>
                             </button>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e50-VR-dPk">
-                                <rect key="frame" x="20" y="20" width="440" height="217"/>
+                                <rect key="frame" x="20" y="100" width="440" height="137"/>
                                 <clipView key="contentView" drawsBackground="NO" id="yKa-tD-VOE">
-                                    <rect key="frame" x="0.0" y="0.0" width="440" height="217"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="425" height="137"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="ZnG-0o-leC">
-                                            <rect key="frame" x="0.0" y="0.0" width="440" height="217"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="425" height="137"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="440" height="217"/>
+                                            <size key="minSize" width="425" height="137"/>
                                             <size key="maxSize" width="440" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -779,13 +779,47 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="YbE-La-PYY">
-                                    <rect key="frame" x="424" y="0.0" width="16" height="217"/>
+                                    <rect key="frame" x="425" y="0.0" width="15" height="137"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frI-tH-JCd">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frI-tH-JCd">
                                 <rect key="frame" x="20" y="297" width="440" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="TinyPNG 的 API key" bezelStyle="round" id="P9D-wP-A7L">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tn8-ow-fli">
+                                <rect key="frame" x="18" y="60" width="172" height="18"/>
+                                <buttonCell key="cell" type="check" title="压缩超过指定大小的图片" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gKJ-gS-HPx">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="checkAssignSizeBtnTapped:" target="XfG-lQ-9wD" id="qsi-Dp-8Pu"/>
+                                </connections>
+                            </button>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hbm-vq-BFa">
+                                <rect key="frame" x="354" y="61" width="21" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="17" id="4HV-IH-ay2"/>
+                                    <constraint firstAttribute="height" constant="16" id="T3b-m0-9pJ"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="KB" id="SNF-dg-Udx">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pvC-C5-eYj">
+                                <rect key="frame" x="198" y="59" width="150" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Fcm-w9-MIm"/>
+                                    <constraint firstAttribute="width" constant="150" id="uiy-jG-Dk0"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="默认为0，单位为 kb" drawsBackground="YES" id="fak-1b-gAD">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -795,15 +829,21 @@
                         <constraints>
                             <constraint firstItem="e50-VR-dPk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="4YT-91-Q1Y"/>
                             <constraint firstItem="frI-tH-JCd" firstAttribute="top" secondItem="EsC-OS-Hsl" secondAttribute="bottom" constant="20" id="ACd-rn-f6z"/>
+                            <constraint firstItem="Hbm-vq-BFa" firstAttribute="centerY" secondItem="pvC-C5-eYj" secondAttribute="centerY" id="Arq-vU-4pi"/>
                             <constraint firstItem="frI-tH-JCd" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="FVd-Br-ELg"/>
+                            <constraint firstItem="pvC-C5-eYj" firstAttribute="leading" secondItem="Tn8-ow-fli" secondAttribute="trailing" constant="8" id="Ish-h1-EKV"/>
+                            <constraint firstItem="pvC-C5-eYj" firstAttribute="centerY" secondItem="Tn8-ow-fli" secondAttribute="centerY" id="KC2-7B-uMI"/>
+                            <constraint firstItem="Tn8-ow-fli" firstAttribute="leading" secondItem="ZnG-0o-leC" secondAttribute="leading" id="KIk-ke-rS3"/>
                             <constraint firstAttribute="trailing" secondItem="6ln-c6-sZ5" secondAttribute="trailing" constant="20" symbolic="YES" id="KRx-wy-fzj"/>
                             <constraint firstItem="EsC-OS-Hsl" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="LZR-rt-3vO"/>
                             <constraint firstAttribute="trailing" secondItem="rz7-JW-mVz" secondAttribute="trailing" constant="20" symbolic="YES" id="NfD-sg-K7f"/>
+                            <constraint firstItem="Tn8-ow-fli" firstAttribute="top" secondItem="ZnG-0o-leC" secondAttribute="bottom" constant="23" id="Vbu-U1-Rhr"/>
                             <constraint firstItem="JEz-Re-uUj" firstAttribute="centerY" secondItem="rz7-JW-mVz" secondAttribute="centerY" id="YQP-FB-cAX"/>
-                            <constraint firstAttribute="bottom" secondItem="e50-VR-dPk" secondAttribute="bottom" constant="20" symbolic="YES" id="co5-LQ-Fen"/>
+                            <constraint firstAttribute="bottom" secondItem="e50-VR-dPk" secondAttribute="bottom" constant="100" id="co5-LQ-Fen"/>
                             <constraint firstItem="e50-VR-dPk" firstAttribute="top" secondItem="rz7-JW-mVz" secondAttribute="bottom" constant="20" id="d5X-k3-e9W"/>
                             <constraint firstItem="EsC-OS-Hsl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="et1-Zo-f8d"/>
                             <constraint firstItem="rz7-JW-mVz" firstAttribute="leading" secondItem="JEz-Re-uUj" secondAttribute="trailing" constant="8" symbolic="YES" id="faF-Rm-N9D"/>
+                            <constraint firstItem="Hbm-vq-BFa" firstAttribute="leading" secondItem="pvC-C5-eYj" secondAttribute="trailing" constant="8" id="hjQ-2g-Gk8"/>
                             <constraint firstItem="6ln-c6-sZ5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="nxS-Y9-pUO"/>
                             <constraint firstAttribute="trailing" secondItem="frI-tH-JCd" secondAttribute="trailing" constant="20" symbolic="YES" id="oHg-DZ-0FD"/>
                             <constraint firstItem="rz7-JW-mVz" firstAttribute="top" secondItem="frI-tH-JCd" secondAttribute="bottom" constant="20" id="pbj-L0-zI3"/>
@@ -814,6 +854,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="assignSizeTF" destination="pvC-C5-eYj" id="1ih-QV-y0B"/>
+                        <outlet property="checkAssinMinimumSizeBtn" destination="Tn8-ow-fli" id="00o-DB-gaQ"/>
                         <outlet property="checkSamePathBtn" destination="nCJ-yu-2Rn" id="Xp9-Gt-d8b"/>
                         <outlet property="chooseFilePathBtn" destination="6ln-c6-sZ5" id="tCR-Kl-j6C"/>
                         <outlet property="compressBtn" destination="rz7-JW-mVz" id="5yh-MK-mGT"/>

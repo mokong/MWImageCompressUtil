@@ -19,7 +19,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var compressBtn: NSButton! // 压缩按钮
     @IBOutlet var contentTextView: NSTextView! // 压缩进度显示
     
+    @IBOutlet weak var checkAssinMinimumSizeBtn: NSButton! // 勾选标示指定超过多大的图片压缩，不勾选则是所有图片都压缩
+    @IBOutlet weak var assignSizeTF: NSTextField!
     
+    fileprivate var minimumSize: Int = 0 // 超过多大的图片压缩，单位为 kb
     fileprivate var fileUrls: [URL]? // 选择的文件路径
     fileprivate var resultOutput: String = "" // 结果
     fileprivate var isSamePath: Bool = true // 默认是相同路径
@@ -97,6 +100,17 @@ class ViewController: NSViewController {
             return
         }
         
+        let assignMinimumSize = 0
+        if checkAssinMinimumSizeBtn.state == .on {
+            if assignSizeTF.stringValue.count == 0 {
+                _privateShowAlert(with: "请输入超过多少kb的图片才压缩")
+                return
+            }
+            minimumSize = assignSizeTF.integerValue
+        } else {
+            minimumSize = 0
+        }
+        
         _privateIncatorAnimate(true)
         
         var allImagePaths: [URL] = []
@@ -109,28 +123,39 @@ class ViewController: NSViewController {
               // "/"结尾说明是目录
               let dirEnumator = fileManager.enumerator(at: url, includingPropertiesForKeys: nil)
               while let subFileUrl = dirEnumator?.nextObject() as? URL {
-                  print(subFileUrl)
+//                  print(subFileUrl)
                   if _privateIsSupportImageType(subFileUrl.pathExtension) {
                       allImagePaths.append(subFileUrl)
                   }
               }
           }
           else if _privateIsSupportImageType(url.pathExtension) {
-              print(url)
+//              print(url)
               allImagePaths.append(url)
           }
         }
+        
+        var targetImagePaths = allImagePaths
+        // 过滤指定大小
+        if minimumSize > 0 {
+            let targetSize = minimumSize * 1024
+            targetImagePaths = allImagePaths.filter {
+                let attributes1 = try? FileManager.default.attributesOfItem(atPath: $0.path)
+                let size1 = attributes1?[.size] as? Int64 ?? 0
+                return size1 > targetSize
+            }
+        }
 
-        // 排序，大图在后面
-        let sortedURLs = allImagePaths.sorted {
+        // 排序，大图在前面
+        targetImagePaths = targetImagePaths.sorted {
           let attributes1 = try? FileManager.default.attributesOfItem(atPath: $0.path)
           let attributes2 = try? FileManager.default.attributesOfItem(atPath: $1.path)
           let size1 = attributes1?[.size] as? Int64 ?? 0
           let size2 = attributes2?[.size] as? Int64 ?? 0
-          return size1 < size2
+          return size1 > size2
         }
 
-        for imageUrl in sortedURLs {
+        for imageUrl in targetImagePaths {
           group.enter()
           _privateCompressImage(with: imageUrl, apiKey: apiKey) {
               group.leave()
@@ -144,6 +169,13 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func checkAssignSizeBtnTapped(_ sender: NSButton) {
+        if sender.state == .on {
+            minimumSize = assignSizeTF.integerValue
+        } else {
+            minimumSize = 0
+        }
+    }
     
     // MARK: - other
     
